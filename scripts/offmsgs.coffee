@@ -76,10 +76,10 @@ module.exports = (robot) ->
 		return if not targetUsers.length
 
 		targetUser = targetUsers[0]
-		msg.send "#{user.name}: Stored that message for #{ (-> if x=targetUser.realName? then x else targetUser.name)() }"
+		msg.send "#{user.name}: Stored that message for #{ (-> if (x=targetUser.realName)? then x else targetUser.name)() }"
 
-		offmsgs = targetUser.offmsgs = {}
-		msgs = offmsgs[room] = []
+		offmsgs = targetUser.offmsgs = (-> if (x=targetUser.offmsgs)? then x else {})()
+		msgs = offmsgs[room] = (-> if (x=offmsgs[room])? then x else [])()
 		msgs.push { sender: user.name, message: message }
 
 	robot.hear /.*/, (msg) ->
