@@ -13,14 +13,15 @@ class MultiNick
 	constructor: (@redisname, @regex) ->
 		allDevs.push @
 
-new MultiNick(  'ironmagma',            /^ironmagma|^im|^phil/i    )
-new MultiNick(  'zib',                  /^zib/i                    )
-new MultiNick(  'nedbat',               /^nedbat/i                 )
-new MultiNick(  'RR_phone',             /^(rr|rivrev)/i            )
-new MultiNick(  'Nick',                 /(nick|shimmey)$/i         )
-new MultiNick(  'matt',                 /matt/i                    )
-new MultiNick(  'will',                 /^will/i                   )
-new MultiNick(  'everett',              /^ev(erett)?/i             )
+new MultiNick(  'ironmagma',            /^ironmagma|^im(?!an)|^phil/i    )
+new MultiNick(  'zib',                  /^zib/i                          )
+new MultiNick(  'nedbat',               /^nedbat/i                       )
+new MultiNick(  'RR_phone',             /^(rr|rivrev)/i                  )
+new MultiNick(  'Nick',                 /(nick|shimmey)$/i               )
+new MultiNick(  'matt',                 /matt/i                          )
+new MultiNick(  'will',                 /^will/i                         )
+new MultiNick(  'everett',              /^ev(erett)?/i                   )
+new MultiNick(  'Iman',                 /^iman/i                         )
 
 alreadyMessaged = []
 
