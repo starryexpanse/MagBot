@@ -22,6 +22,7 @@ new MultiNick(  'Nick',                 /(nick|shimmey)/i               )
 new MultiNick(  'RR_phone',             /^(rr|rivrev)/i                  )
 new MultiNick(  'will',                 /^will/i                         )
 new MultiNick(  'zib',                  /^zib/i                          )
+new MultiNick(  'Chad',                  /^chad/i                          )
 
 alreadyMessaged = []
 
