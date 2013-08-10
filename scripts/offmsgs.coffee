@@ -63,19 +63,22 @@ module.exports = (robot) ->
 		room = data.message.room
 		deliverMessages room, user
 
-	robot.hear /^([a-zA-Z_-][a-zA-Z0-9_-]*)\)\s*(.+)$/i, (msg) ->
+	robot.hear /^\s*([a-zA-Z_-][a-zA-Z0-9_-]*)\s*\)\s*(.+)$/i, (msg) ->
+		robot.logger.debug "heard message as offmsg... {msg}"
 		user = msg.message.user
 		room = user.room
 		target = msg.match[1]
 		message = msg.match[2]
 		
+		robot.logger.debug "userForFuzzyName(#{target})"
 		targetUsers = robot.brain.usersForFuzzyName(target)
+		robot.logger.debug "targetUsers is #{targetUsers}"
 		if targetUsers.length > 1
 			msg.send "There's some ambiguity in who '#{target}' refers to."
 			return
 		else if targetUsers.length is 0
 			msg.send "I don't know who #{target} is."
-		return if not targetUsers.length
+			return
 
 		targetUser = targetUsers[0]
 		msg.send "#{user.name}: Stored that message for #{ (-> if (x=targetUser.realName)? then x else targetUser.name)() }"
