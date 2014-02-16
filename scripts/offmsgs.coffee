@@ -23,6 +23,7 @@ new MultiNick(  'RR_phone',             /^(rr|rivrev)/i                  )
 new MultiNick(  'will',                 /^will/i                         )
 new MultiNick(  'zib',                  /^zib/i                          )
 new MultiNick(  'Chad',                  /^chad/i                          )
+new MultiNick(  'Devon',                 /devon|malibubob/i                          )
 
 alreadyMessaged = []
 
@@ -77,7 +78,7 @@ module.exports = (robot) ->
 			msg.send "There's some ambiguity in who '#{target}' refers to."
 			return
 		else if targetUsers.length is 0
-			msg.send "I don't know who #{target} is."
+			msg.send "Who the hell is #{target}?"
 			return
 
 		targetUser = targetUsers[0]
