@@ -18,12 +18,13 @@ new MultiNick(  'Iman',                 /^iman/i                         )
 new MultiNick(  'ironmagma',            /^ironmagma|^im(?!an)|^phil/i    )
 new MultiNick(  'nedbat',               /^nedbat/i                       )
 new MultiNick(  'matt',                 /matt/i                          )
-new MultiNick(  'Nick',                 /(nick|shimmey)/i               )
+new MultiNick(  'Nick',                 /(nick|shimmey)/i                )
 new MultiNick(  'RR_phone',             /^(rr|rivrev)/i                  )
 new MultiNick(  'will',                 /^will/i                         )
 new MultiNick(  'zib',                  /^zib/i                          )
-new MultiNick(  'Chad',                  /^chad/i                          )
-new MultiNick(  'Devon',                 /devon|malibubob/i                          )
+new MultiNick(  'Chad',                  /^chad/i                        )
+new MultiNick(  'Devon',                 /devon|malibubob/i              )
+new MultiNick(  'Andrew K',              /l.fes[ca]{2}p/i                )
 
 alreadyMessaged = []
 
