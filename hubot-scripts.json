@@ -1,4 +1,4 @@
-["redis-brain.coffee", "tweet.coffee", "shipit.coffee",
+["tweet.coffee", "shipit.coffee",
 
 
 "factoid.coffee",
@@ -22,8 +22,6 @@
 "punchfork.coffee",
 "put-it-back.coffee",
 "python_library.coffee",
-"redis-brain.coffee",
-"redis-notify.js",
 "screencast.coffee",
 "sloth-me.coffee",
 "swanson.coffee",

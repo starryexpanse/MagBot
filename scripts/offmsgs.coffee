@@ -79,7 +79,7 @@ module.exports = (robot) ->
 			msg.send "There's some ambiguity in who '#{target}' refers to."
 			return
 		else if targetUsers.length is 0
-			msg.send "Who the hell is #{target}?"
+			msg.send "I don't know who #{target} is."
 			return
 
 		targetUser = targetUsers[0]
