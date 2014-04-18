@@ -27,7 +27,7 @@ new MultiNick(  'Chad',                 /^chad/i                         )
 new MultiNick(  'Kelly',                /^kelly/i                        )
 new MultiNick(  'Robert',               /^(robert|tycho)/i               )
 new MultiNick(  'Vincent',               /^vincent/i                     )
-new MultiNick(  'Andrew K',              /l.fes[ca]{2}p/i                )
+new MultiNick(  'L1fescape',              /l.fes[ca]{2}p/i                )
 
 alreadyMessaged = []
 
@@ -66,12 +66,14 @@ module.exports = (robot) ->
 	robot.enter (data) ->
 		user = data.message.user
 		room = data.message.room
+		return if not room
 		deliverMessages room, user
 
 	robot.hear /^\s*([a-zA-Z_-][a-zA-Z0-9_-]*)\s*\)\s*(.+)$/i, (msg) ->
 		robot.logger.debug "heard message as offmsg... {msg}"
 		user = msg.message.user
 		room = user.room
+		return true if not room
 		target = msg.match[1]
 		message = msg.match[2]
 		
@@ -95,4 +97,5 @@ module.exports = (robot) ->
 	robot.hear /.*/, (msg) ->
 		user = msg.message.user
 		room = user.room
+		return true if not room
 		deliverMessages room, user

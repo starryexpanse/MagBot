@@ -1,5 +1,5 @@
 util = require "util"
-fs = require "fs"
+fs = require "graceful-fs"
 
 strTwoDigits = (num) -> ('0'+num).slice(-2)
 
@@ -34,7 +34,7 @@ getChannelFile = (normedchannel, date, callback) ->
    else
       mychann[fdate] = new ChannelFile(normedchannel, date, (err, fd) ->
          if err
-            util.error("Could not load channel file for #{channel} and #{date}.", err)
+            util.error("Could not load channel file for #{normedchannel} and #{date}.", err)
             removeChannelFile(@)
             callback(err, null, null)
          else
@@ -42,7 +42,7 @@ getChannelFile = (normedchannel, date, callback) ->
             callback(null, @fd, @)
       )
       
-getFilename = (chan, date) -> "#{chan}.#{fmtDate(date)}.log"
+getFilename = (chan, date) -> "testing_logs/#{chan}.#{fmtDate(date)}.log"
 
 class ChannelFile
    constructor: (@normedName, @date, callback) ->
@@ -69,7 +69,7 @@ settlePending = (fdate) ->
 
          realdate = dateFromFmt(date)
 
-         getChannelFile(normedRoomName, realdate, do (items) -> (err, fd, cf) ->
+         getChannelFile(normedRoomName, realdate, do (items, normedRoomName) -> (err, fd, cf) ->
             # TODO (unlikely) what happens if this function is
             # called so long after getChannelFile was called that
             # the file descriptor has been closed? We'll need to reopen it.
@@ -87,7 +87,9 @@ settlePending = (fdate) ->
                if items[b-1] == null
                   items.pop()
                   closeAfter = true
-               appendText = items.join('\n') + '\n'
+               appendText = items.join('\n')
+               if appendText != ''
+                  appendText += '\n'
                length = appendText.length
                fs.write(fd, new Buffer(appendText), 0, length, null, (err) -> 
                   if err
@@ -107,9 +109,9 @@ settlePending = (fdate) ->
 
 
 
-setInterval(->
-   console.log pending
-,4000)
+# setInterval(->
+#    console.log pending
+# 		, 4000)
 
 padZero2 = (num) ->
    num += ''
@@ -122,9 +124,10 @@ module.exports = (robot) ->
 
    robot.hear /.*/, (msg) ->
       user = msg.message.user
-      msg.message.text
-      console.log msg.message
-      console.log "user room is #{user.room}"
+      return true unless user.room
+
+      #console.log msg.message
+      #console.log "user room is #{user.room}"
       room = normChannel(user.room)
       fdate = fmtDate(new Date())
 
