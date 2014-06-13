@@ -109,16 +109,18 @@ settlePending = (fdate) ->
 
 
 
-# setInterval(->
-#    console.log pending
-# 		, 4000)
-
 padZero2 = (num) ->
    num += ''
    if num.length < 2
       "0#{num}"
    else
       num
+
+markDaysAsOver = () ->
+  for room in pending
+     for own date of room
+        if date < fdate and room[date].slice(-1)[0] != null
+           room[date].push(null)
 
 module.exports = (robot) ->
 
@@ -131,10 +133,7 @@ module.exports = (robot) ->
       room = normChannel(user.room)
       fdate = fmtDate(new Date())
 
-      for room in pending
-         for own date of room
-            if date < fdate and room[date].slice(-1)[0] != null
-               room[date].push(null)
+      markDaysAsOver()
 
       mqueue = ((pending[room] ?= {})[fdate] ?= [])
       cdate = new Date()
