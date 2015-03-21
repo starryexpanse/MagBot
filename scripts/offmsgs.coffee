@@ -26,8 +26,10 @@ new MultiNick(  'zib',                  /^zib/i                          )
 new MultiNick(  'Chad',                 /^chad/i                         )
 new MultiNick(  'Kelly',                /^kelly/i                        )
 new MultiNick(  'Robert',               /^(robert|tycho)/i               )
-new MultiNick(  'Vincent',               /^vincent/i                     )
-new MultiNick(  'L1fescape',              /l.fes[ca]{2}p/i                )
+new MultiNick(  'Vincent',              /^vincent/i                      )
+new MultiNick(  'L1fescape',            /l.fes[ca]{2}p/i                 )
+new MultiNick(  'Joe',                  /^joe/i                          )
+new MultiNick(  'Tim',                  /^tim/i                          )
 
 alreadyMessaged = []
 
